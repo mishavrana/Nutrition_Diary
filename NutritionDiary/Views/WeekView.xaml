@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="NutritionDiary.Views.WeekView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NutritionDiary.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="5 5 5 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="24" Grid.Row="0">
+            <Run Text="Week " />
+            <Run Text="{Binding CurrentWeekNumber}" />
+        </TextBlock>
+
+        <TextBlock FontSize="16" Grid.Row="1" Margin="0 5 0 0">
+            <Run Text="Product " />
+            <Run Text="{Binding CurrentProduct}" />
+        </TextBlock>
+        <Grid Grid.Row="2" Margin="0 5 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListBox Height="100" Margin="0 5 0 0" ItemsSource="{Binding DaysAndReactions, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" BorderThickness="1" BorderBrush="Black" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontSize="16" Grid.Row="0" HorizontalAlignment="Center">
+                    <Run Text="Date: " />
+                    <Run Text="{Binding CurrentDate}" />
+                </TextBlock>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Good" Command="{Binding GoodReaction}" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
+                    <Button Content="Bad" Command="{Binding BadReaction}" Grid.Column="1" Width="100" HorizontalAlignment="Left"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Button Content="Done" Command="{Binding Done}" Width="100" HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
