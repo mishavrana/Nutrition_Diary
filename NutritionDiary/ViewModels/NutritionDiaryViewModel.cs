@@ -22,11 +22,13 @@ namespace NutritionDiary.ViewModels
                 List<String> weeksInStringRrpresantable = new List<String>();
                 foreach (var week in _weeks)
                 {
-                    weeksInStringRrpresantable.Add($"{week.StartDate.ToString("d")}-{week.EndDate.ToString("d")}: {week.Product}");
+                    weeksInStringRrpresantable.Add($"{week.StartDate.ToString("d")}-{week.EndDate.Date.ToString("d")}: {week.Product!}");
                 }
                 return weeksInStringRrpresantable;
             }
         }
+
+        public IEnumerable<WeekViewModel> Week => _weeks;
 
         private List<string> _startAndEndDays = new List<string>();
         public List<string> StartAndEndDays
@@ -61,6 +63,7 @@ namespace NutritionDiary.ViewModels
 
         public ICommand AddNewWeek { get; }
         public ICommand SelectWeek { get; }
+        public ICommand LoadWeeksCommand { get; }
 
         public NutritionDiaryViewModel(NavigationStore navigationStore, Diary diary)
         {
@@ -68,22 +71,31 @@ namespace NutritionDiary.ViewModels
             _weeks = new ObservableCollection<WeekViewModel>();
             AddNewWeek = new AddNewWeekCommand(navigationStore, diary);
             SelectWeek = new SelectWeekCommand(navigationStore, diary, _selectedItem);
+            LoadWeeksCommand = new LoadWeeksCommand(this, diary);
 
-            UpdateWeeks();
-            UpdateProducts();   
+            //UpdateProducts();   
         }
 
-        private void UpdateWeeks()
+        public static NutritionDiaryViewModel LoadViewModel(NavigationStore navigationStore, Diary diary)
+        {
+            NutritionDiaryViewModel viewModel = new NutritionDiaryViewModel(navigationStore, diary);
+            viewModel.LoadWeeksCommand.Execute(null);
+            return viewModel;
+        }
+
+        public void UpdateWeeks(IEnumerable<Week> weeks)
         {
             _weeks.Clear();
-            foreach (var week in _diary.Weeks)
+            _diary.Weeks = weeks.ToList();
+            foreach (var week in weeks)
             {
                 WeekViewModel weekViewModel = new WeekViewModel(week);
                 _weeks.Add(weekViewModel);
+                
             }
         }
 
-        private void UpdateProducts()
+        /*private void UpdateProducts()
         {
             foreach(Week week in _diary.Weeks)
             {
@@ -99,7 +111,7 @@ namespace NutritionDiary.ViewModels
                     }
                 }
             }
-        }
+        }*/
 
     }
 }

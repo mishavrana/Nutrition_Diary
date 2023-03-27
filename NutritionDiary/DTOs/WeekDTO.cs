@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NutritionDiary.DTOs
+{
+    public class WeekDTO
+    {
+        [Key]
+        public string Id {  get; set; } 
+        public DateTime StartDate { get; set; } 
+        public DateTime EndDate { get; set; }
+        public string Reaction { get; set; }    
+        public string Product { get; set; } 
+    }
+}

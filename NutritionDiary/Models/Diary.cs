@@ -1,6 +1,10 @@
-﻿using System;
+﻿using NutritionDiary.Services.WeekCreators;
+using NutritionDiary.Services.WeekProviders;
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,22 +12,38 @@ namespace NutritionDiary.Models
 {
     public class Diary
     {
-        private List<Week> _weeks;
+        //private List<Week> _weeks;
+
+        private IWeekProvider _weekProvider;
+        private IWeekCreator _weekCreator;
+
         private List<String> _allowedProducts;
         private List<String> _bannedProducts;
 
-        public List<Week> Weeks { get { return _weeks; } }
-        public Diary()
+        private List<Week> _weeks;
+        public List<Week> Weeks 
+        { 
+            get { return _weeks; } 
+            set { _weeks = value; }
+        }
+
+        public Diary(IWeekProvider weekProvider, IWeekCreator weekCreator)
         {
-            _weeks = new List<Week>();
-            _allowedProducts = new List<String>();
-            _bannedProducts = new List<String>();
+            _weekProvider = weekProvider;
+            _weekCreator = weekCreator;
+        }
+
+
+        //Get all Weeks with a provider
+        public async Task<IEnumerable<Week>> GetAllWeeks()
+        {
+            return await _weekProvider.GetAllWeeks();
         }
 
         // Adding a weeek
-        public void StartNewWeek(Week week)
+        public async Task StartNewWeek(Week week)
         {
-            _weeks.Add(week);
+            await _weekCreator.CreateWeek(week);
         }
 
         // Adding banned product 

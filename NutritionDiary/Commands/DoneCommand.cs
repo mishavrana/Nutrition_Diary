@@ -17,7 +17,7 @@ namespace NutritionDiary.Commands
 
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentViewModel = new NutritionDiaryViewModel(_navigationStore, _diary);
+            _navigationStore.CurrentViewModel = NutritionDiaryViewModel.LoadViewModel(_navigationStore, _diary);
         }
 
         public DoneCommand(NavigationStore navigationStore, Diary diary)

@@ -75,10 +75,10 @@ namespace NutritionDiary.ViewModels
             _currentProduct = week.Product;
 
             _daysAndReactions = new List<string>();
-            foreach (var note in week.DaysAndReactions)
+            /*foreach (var note in week.DaysAndReactions)
             {
                 _daysAndReactions.Add($"{note.Key}: {note.Value}");
-            }
+            }*/
         }
     }
 }

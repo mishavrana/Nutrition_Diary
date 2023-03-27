@@ -45,7 +45,7 @@ namespace NutritionDiary.ViewModels
         public AddWeekViewModel(Diary diary, NavigationStore navigationStore)
         {
             StartNewWeek = new StartNewWeekCommand(this, diary, navigationStore);
-            Cancel = new CancelStartNewWeekCommand(navigationStore);
+            Cancel = new CancelStartNewWeekCommand(diary, navigationStore);
         }
 
     }

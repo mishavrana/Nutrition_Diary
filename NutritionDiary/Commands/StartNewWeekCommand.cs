@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace NutritionDiary.Commands
 {
-    public class StartNewWeekCommand : CommandBase
+    public class StartNewWeekCommand : AsyncCommandBase
     {
         private readonly AddWeekViewModel _addWeekViewModel;
         private readonly Diary _diary;
@@ -39,14 +39,14 @@ namespace NutritionDiary.Commands
             return !string.IsNullOrEmpty(_addWeekViewModel.NewProduct) && base.CanExecute(parameter);
         }
 
-        public override void Execute(object? parameter)
+        public override async Task ExecuteAsync(object? parameter)
         {
             Week week = new Week(_addWeekViewModel.StartDate, _addWeekViewModel.EndDate, _addWeekViewModel.NewProduct);
             try
             {
-                _diary.StartNewWeek(week);
+                await _diary.StartNewWeek(week);
                 MessageBox.Show("Added new week!", "Error", MessageBoxButton.OK);
-                _navigationStore.CurrentViewModel = new NutritionDiaryViewModel(_navigationStore, _diary);
+                _navigationStore.CurrentViewModel = NutritionDiaryViewModel.LoadViewModel(_navigationStore, _diary);
 
             }
             catch

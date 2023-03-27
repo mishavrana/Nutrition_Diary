@@ -21,6 +21,7 @@ namespace NutritionDiary.Commands
             set { _weekId = value; }
         }
 
+
         private Week week => _diary.Weeks.Where(week => week.Id == _weekId).FirstOrDefault();
         public override void Execute(object? parameter)
         {
@@ -31,8 +32,8 @@ namespace NutritionDiary.Commands
         public SelectWeekCommand(NavigationStore navigationStore, Diary diary, string weekId)
         {
             _navigationStore = navigationStore;
-            _diary = diary;
             _weekId = weekId;
+            _diary = diary;
         }
     }
 }

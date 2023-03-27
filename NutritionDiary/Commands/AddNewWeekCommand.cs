@@ -17,8 +17,9 @@ namespace NutritionDiary.Commands
 
         public override bool CanExecute(object? parameter)
         {
-            return (_diary.Weeks.Count() > 0 && _diary.Weeks.Last()?.EndDate < DateTime.Now) ||
-                _diary.Weeks.Count() == 0;
+            /*return (_diary.Weeks.Count() > 0 && _diary.Weeks.Last()?.EndDate < DateTime.Now) ||
+                _diary.Weeks.Count() == 0;*/
+            return true;
         }
         public override void Execute(object? parameter)
         {

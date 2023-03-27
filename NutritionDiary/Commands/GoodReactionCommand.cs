@@ -17,12 +17,9 @@ namespace NutritionDiary.Commands
         private readonly CurrentWeekViewModel _weekViewModel;
         public override void Execute(object? parameter)
         {
-            List<string> daysAndReactionsStringRepresentable = new List<string>();  
-            _week.DaysAndReactions.Add(_week.CurrentDate, Reaction.Good);
-            foreach(var note in _week.DaysAndReactions)
-            {
-                daysAndReactionsStringRepresentable.Add($"{note.Key}: {note.Value}");
-            }
+            List<string> daysAndReactionsStringRepresentable = new List<string>();
+            _week.Reaction = Reaction.Good;
+            
             _weekViewModel.DaysAndReactions = daysAndReactionsStringRepresentable;
         }
 
