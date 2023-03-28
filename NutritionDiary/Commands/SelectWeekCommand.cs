@@ -26,6 +26,7 @@ namespace NutritionDiary.Commands
         public override void Execute(object? parameter)
         {
             WeekId = parameter?.ToString();
+            _diary.CurrentWeek = week;
             _navigationStore.CurrentViewModel = new CurrentWeekViewModel(_navigationStore, _diary, week);
         }
 

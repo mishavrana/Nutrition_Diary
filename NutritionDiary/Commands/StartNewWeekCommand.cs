@@ -41,7 +41,7 @@ namespace NutritionDiary.Commands
 
         public override async Task ExecuteAsync(object? parameter)
         {
-            Week week = new Week(_addWeekViewModel.StartDate, _addWeekViewModel.EndDate, _addWeekViewModel.NewProduct);
+            Week week = new Week(_addWeekViewModel.StartDate, _addWeekViewModel.EndDate, _addWeekViewModel.NewProduct, null);
             try
             {
                 await _diary.StartNewWeek(week);

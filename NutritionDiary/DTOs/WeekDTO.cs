@@ -14,6 +14,7 @@ namespace NutritionDiary.DTOs
         public DateTime StartDate { get; set; } 
         public DateTime EndDate { get; set; }
         public string Reaction { get; set; }    
-        public string Product { get; set; } 
+        public string Product { get; set; }
+        public string DaysAndReactionsJson { get; set; }
     }
 }

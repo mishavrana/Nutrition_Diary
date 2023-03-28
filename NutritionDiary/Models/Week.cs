@@ -13,11 +13,11 @@ namespace NutritionDiary.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CurrentDate { get; set; }   
-        public IDictionary<DateTime, Reaction> DaysAndReactions { get; set; }
+        public Dictionary<string, string> DaysAndReactions { get; set; }
         public Reaction Reaction { get; set; }
         public string Product { get; set; }
 
-        public Week(DateTime startDate, DateTime endDate, string product, string? reaction = null)
+        public Week(DateTime startDate, DateTime endDate, string product, Dictionary<string, string>? daysAndReactions , string? reaction = null)
         {
             StartDate = startDate;
             EndDate = endDate;
@@ -30,7 +30,7 @@ namespace NutritionDiary.Models
                 case "Bad": Reaction = Reaction.Bad; break;
                 default: Reaction = Reaction.Undifined; break;
             }
-            DaysAndReactions = new Dictionary<DateTime, Reaction>();
+            DaysAndReactions = daysAndReactions == null ? new Dictionary<string, string>() : daysAndReactions;
         }
     }
 }

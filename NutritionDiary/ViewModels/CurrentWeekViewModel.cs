@@ -67,18 +67,22 @@ namespace NutritionDiary.ViewModels
         public ICommand Done { get; }
         public CurrentWeekViewModel(NavigationStore navigationStore, Diary diary, Week week)
         {
-            GoodReaction = new GoodReactionCommand(week, this);
+            GoodReaction = new GoodReactionCommand(week, this, diary.WeekCreator);
             BadReaction = new BadReactionCommand(week, this);
-            Done = new DoneCommand(navigationStore, diary);
+            Done = new DoneCommand(navigationStore, diary, week, diary.WeekCreator);
  
             _currentWeekNumber = week.Id;
             _currentProduct = week.Product;
 
-            _daysAndReactions = new List<string>();
-            /*foreach (var note in week.DaysAndReactions)
+            List<string> stringRepresentabeDaysAndReactions = new List<string>();
+
             {
-                _daysAndReactions.Add($"{note.Key}: {note.Value}");
-            }*/
+                foreach (var keyValuePair in week.DaysAndReactions)
+                {
+                    stringRepresentabeDaysAndReactions.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
+                }
+            }
+            DaysAndReactions = stringRepresentabeDaysAndReactions;
         }
     }
 }

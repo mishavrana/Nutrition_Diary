@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using NutritionDiary.DbContexts;
 using NutritionDiary.Models;
 using NutritionDiary.Services.WeekCreators;
@@ -40,6 +41,8 @@ namespace NutritionDiary
             
             using (ToDiaryDbContext dbContext = _toDiaryDbContextFactory.CreateDbContext())
             {
+                
+
                 dbContext.Database.Migrate();
             }
 

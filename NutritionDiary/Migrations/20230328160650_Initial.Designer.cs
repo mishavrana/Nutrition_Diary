@@ -11,7 +11,7 @@ using NutritionDiary.DbContexts;
 namespace NutritionDiary.Migrations
 {
     [DbContext(typeof(ToDiaryDbContext))]
-    [Migration("20230327085513_Initial")]
+    [Migration("20230328160650_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -23,6 +23,10 @@ namespace NutritionDiary.Migrations
             modelBuilder.Entity("NutritionDiary.DTOs.WeekDTO", b =>
                 {
                     b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DaysAndReactionsJson")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EndDate")

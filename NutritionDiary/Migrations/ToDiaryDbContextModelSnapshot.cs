@@ -22,6 +22,10 @@ namespace NutritionDiary.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DaysAndReactionsJson")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
 

@@ -14,11 +14,11 @@ namespace NutritionDiary.ViewModels
         public string Id => _week.Id;
         public DateTime StartDate => _week.StartDate;
         public DateTime EndDate => _week.EndDate;
+        public string daysAndReactions { get; set; }  
 
         public WeekViewModel(Week week)
         {
             _week = week;
-
         }
 
     }

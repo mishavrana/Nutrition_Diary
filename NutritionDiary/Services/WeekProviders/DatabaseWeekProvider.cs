@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using Newtonsoft.Json;
 using NutritionDiary.DbContexts;
 using NutritionDiary.DTOs;
 using NutritionDiary.Models;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace NutritionDiary.Services.WeekProviders
 {
@@ -24,14 +27,22 @@ namespace NutritionDiary.Services.WeekProviders
             using (ToDiaryDbContext context = _dbContextFactory.CreateDbContext())
             {
                 IEnumerable<WeekDTO> weekDTOs = await context.Weeks.ToListAsync();
+                //IEnumerable<WeekDTO> weekDTOs = await context.Weeks.Include(w => w.DaysAndReactions).ToListAsync();
+               
 
+                IEnumerable<Week> weeks = weekDTOs.Select(x => ToWeek(x));
+                
+               
+                //return weeks;
                 return weekDTOs.Select(x => ToWeek(x));
             }
         }
 
         private static Week ToWeek(WeekDTO x)
         {
-            return new Week(x.StartDate, x.EndDate, x.Product, x.Reaction);
+            Dictionary<string, string> daysAndReactions = JsonConvert.DeserializeObject<Dictionary<string, string>>(x.DaysAndReactionsJson)!;
+
+            return new Week(x.StartDate, x.EndDate, x.Product, daysAndReactions, x.Reaction);
         }
     }
 }

@@ -27,6 +27,11 @@ namespace NutritionDiary.Models
             set { _weeks = value; }
         }
 
+        public IWeekCreator WeekCreator => _weekCreator;
+        public IWeekProvider WeekProvider => _weekProvider;
+
+        public Week CurrentWeek { get; set; }
+
         public Diary(IWeekProvider weekProvider, IWeekCreator weekCreator)
         {
             _weekProvider = weekProvider;

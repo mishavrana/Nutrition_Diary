@@ -10,5 +10,6 @@ namespace NutritionDiary.Services.WeekCreators
     public interface IWeekCreator
     {
         Task CreateWeek(Week week);
+        Task UpdateWeek(Week week); 
     }
 }

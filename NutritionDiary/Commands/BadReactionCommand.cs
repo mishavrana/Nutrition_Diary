@@ -15,13 +15,14 @@ namespace NutritionDiary.Commands
         private readonly CurrentWeekViewModel _weekViewModel;
         public override void Execute(object? parameter)
         {
-            List<string> daysAndReactionsStringRepresentable = new List<string>();
-            _week.DaysAndReactions.Add(_week.CurrentDate, Reaction.Bad);
-            foreach (var note in _week.DaysAndReactions)
+            List<string> listsRepresendableDaysAndReactions = new List<string>();
+            _week.Reaction = Reaction.Bad;
+            _week.DaysAndReactions.Add(_week.CurrentDate.ToString(), _week.Reaction.ToString());
+            /*foreach(var keyValuePair in _week.DaysAndReactions)
             {
-                daysAndReactionsStringRepresentable.Add($"{note.Key}: {note.Value}");
+                listsRepresendableDaysAndReactions.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
             }
-            _weekViewModel.DaysAndReactions = daysAndReactionsStringRepresentable;
+            _weekViewModel.DaysAndReactions = listsRepresendableDaysAndReactions;*/
         }
 
         public  BadReactionCommand(Week week, CurrentWeekViewModel currentWeekViewModel)
