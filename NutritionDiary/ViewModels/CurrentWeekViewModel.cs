@@ -24,8 +24,8 @@ namespace NutritionDiary.ViewModels
             }
             set
             {
-               _daysAndReactions = value;
-               OnPropertyChanged(nameof(DaysAndReactions));
+                _daysAndReactions = value;
+                OnPropertyChanged(nameof(DaysAndReactions));
             }
         }
 
@@ -67,9 +67,9 @@ namespace NutritionDiary.ViewModels
         public ICommand Done { get; }
         public CurrentWeekViewModel(NavigationStore navigationStore, Diary diary, Week week)
         {
-            GoodReaction = new GoodReactionCommand(week, this, diary.WeekCreator);
+            GoodReaction = new GoodReactionCommand(week, this);
             BadReaction = new BadReactionCommand(week, this);
-            Done = new DoneCommand(navigationStore, diary, week, diary.WeekCreator);
+            Done = new DoneCommand(navigationStore, diary, week);
  
             _currentWeekNumber = week.Id;
             _currentProduct = week.Product;

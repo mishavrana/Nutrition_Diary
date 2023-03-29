@@ -9,7 +9,7 @@ namespace NutritionDiary.Models
 {
     public class Week
     {
-        public string Id => $"{StartDate.ToString("d")}-{EndDate.Date.ToString("d")}: {Product!}";
+        public string Id => $"{StartDate.ToString("d")}-{Product!}";
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CurrentDate { get; set; }   
@@ -17,10 +17,10 @@ namespace NutritionDiary.Models
         public Reaction Reaction { get; set; }
         public string Product { get; set; }
 
-        public Week(DateTime startDate, DateTime endDate, string product, Dictionary<string, string>? daysAndReactions , string? reaction = null)
+        public Week(DateTime startDate, string product, Dictionary<string, string>? daysAndReactions , string? reaction = null)
         {
             StartDate = startDate;
-            EndDate = endDate;
+            EndDate = StartDate.AddDays(7);
             CurrentDate = DateTime.Now;
             Product = product;
 

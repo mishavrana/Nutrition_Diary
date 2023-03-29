@@ -18,26 +18,18 @@ namespace NutritionDiary.Commands
         private readonly NavigationStore _navigationStore;
         private readonly Diary _diary;
         private readonly Week _week;
-        private IWeekCreator _weekCreator;
-        private IWeekProvider _weekProvider;
-/*
-        public override void Execute(object? parameter)
-        {
-            _navigationStore.CurrentViewModel = NutritionDiaryViewModel.LoadViewModel(_navigationStore, _diary);
-        }*/
 
         public override async Task ExecuteAsync(object parameter)
         {
-            await _weekCreator.UpdateWeek(_week);
+            await _diary.UpdateWeek(_week);
             _navigationStore.CurrentViewModel = NutritionDiaryViewModel.LoadViewModel(_navigationStore, _diary);
         }
 
-        public DoneCommand(NavigationStore navigationStore, Diary diary, Week week, IWeekCreator weekCreator)
+        public DoneCommand(NavigationStore navigationStore, Diary diary, Week week)
         {
             _navigationStore = navigationStore;
             _diary = diary;
             _week = week;   
-            _weekCreator = weekCreator;
         }
     }
 }

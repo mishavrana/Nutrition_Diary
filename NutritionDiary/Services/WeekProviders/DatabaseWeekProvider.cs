@@ -42,7 +42,7 @@ namespace NutritionDiary.Services.WeekProviders
         {
             Dictionary<string, string> daysAndReactions = JsonConvert.DeserializeObject<Dictionary<string, string>>(x.DaysAndReactionsJson)!;
 
-            return new Week(x.StartDate, x.EndDate, x.Product, daysAndReactions, x.Reaction);
+            return new Week(x.StartDate, x.Product, daysAndReactions, x.Reaction);
         }
     }
 }

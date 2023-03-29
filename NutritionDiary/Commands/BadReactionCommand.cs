@@ -15,14 +15,33 @@ namespace NutritionDiary.Commands
         private readonly CurrentWeekViewModel _weekViewModel;
         public override void Execute(object? parameter)
         {
-            List<string> listsRepresendableDaysAndReactions = new List<string>();
             _week.Reaction = Reaction.Bad;
-            _week.DaysAndReactions.Add(_week.CurrentDate.ToString(), _week.Reaction.ToString());
-            /*foreach(var keyValuePair in _week.DaysAndReactions)
+            _week.EndDate = DateTime.Now;
+
+            // Check if the is a key for this day in dictionary
+            var key = _week.CurrentDate.ToString("d");
+
+            if (_week.DaysAndReactions.ContainsKey(key))
+            {
+                _week.DaysAndReactions[key] = _week.Reaction.ToString();
+            }
+            else
+            {
+                _week.DaysAndReactions.Add(_week.CurrentDate.ToString("d"), _week.Reaction.ToString());
+            }
+
+            // Representing DaysAndReactions in string for the view model
+            List<string> listsRepresendableDaysAndReactions = new List<string>();
+            foreach (var keyValuePair in _week.DaysAndReactions)
             {
                 listsRepresendableDaysAndReactions.Add($"{keyValuePair.Key}: {keyValuePair.Value}");
             }
-            _weekViewModel.DaysAndReactions = listsRepresendableDaysAndReactions;*/
+            _weekViewModel.DaysAndReactions = listsRepresendableDaysAndReactions;
+        }
+
+        public override bool CanExecute(object? parameter)
+        {
+            return _week.EndDate != DateTime.Now;
         }
 
         public  BadReactionCommand(Week week, CurrentWeekViewModel currentWeekViewModel)

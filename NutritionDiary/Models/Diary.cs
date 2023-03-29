@@ -51,6 +51,12 @@ namespace NutritionDiary.Models
             await _weekCreator.CreateWeek(week);
         }
 
+        // Updating a week
+        public async Task UpdateWeek(Week week)
+        {
+            await _weekCreator.UpdateWeek(week);
+        }
+
         // Adding banned product 
         public void AddBannedProduct(string product)
         {

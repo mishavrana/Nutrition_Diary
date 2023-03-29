@@ -11,7 +11,7 @@ namespace NutritionDiary.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DROP TABLE IF EXISTS Weeks");
+            migrationBuilder.Sql("DROP TABLE IF EXISTS Week");
             migrationBuilder.CreateTable(
                 name: "Weeks",
                 columns: table => new
