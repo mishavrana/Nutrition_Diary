@@ -11,7 +11,6 @@ namespace NutritionDiary.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DROP TABLE IF EXISTS Week");
             migrationBuilder.CreateTable(
                 name: "Weeks",
                 columns: table => new
@@ -21,7 +20,8 @@ namespace NutritionDiary.Migrations
                     EndDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Reaction = table.Column<string>(type: "TEXT", nullable: false),
                     Product = table.Column<string>(type: "TEXT", nullable: false),
-                    DaysAndReactionsJson = table.Column<string>(type: "TEXT", nullable: false)
+                    DaysAndReactionsJson = table.Column<string>(type: "TEXT", nullable: false),
+                    isFinished = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

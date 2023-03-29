@@ -22,7 +22,7 @@ namespace NutritionDiary.Commands
         }
 
 
-        private Week week => _diary.Weeks.Where(week => week.Id == _weekId).FirstOrDefault();
+        private Week week => _diary.Weeks.Where(week => week.Id == WeekId).First();
         public override void Execute(object? parameter)
         {
             WeekId = parameter?.ToString();

@@ -66,6 +66,7 @@ namespace NutritionDiary.Services.WeekCreators
                Reaction = week.Reaction.ToString(),
                Product = week.Product,
                DaysAndReactionsJson = daysAndReactionsJson,
+               isFinished = week.IsFinished,    
             };
         }
     }

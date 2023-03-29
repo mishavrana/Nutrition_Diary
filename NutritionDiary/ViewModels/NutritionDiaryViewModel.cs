@@ -22,7 +22,7 @@ namespace NutritionDiary.ViewModels
                 List<String> weeksInStringRrpresantable = new List<String>();
                 foreach (var week in _weeks)
                 {
-                    weeksInStringRrpresantable.Add($"{week.StartDate.ToString("d")}-{week.EndDate.Date.ToString("d")}: {week.Product!}");
+                    weeksInStringRrpresantable.Add($"{week.StartDate.ToString("d")}: {week.Product!}");
                 }
                 return weeksInStringRrpresantable;
             }

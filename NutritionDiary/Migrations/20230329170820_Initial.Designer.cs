@@ -11,7 +11,7 @@ using NutritionDiary.DbContexts;
 namespace NutritionDiary.Migrations
 {
     [DbContext(typeof(ToDiaryDbContext))]
-    [Migration("20230328160650_Initial")]
+    [Migration("20230329170820_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -42,6 +42,9 @@ namespace NutritionDiary.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("isFinished")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

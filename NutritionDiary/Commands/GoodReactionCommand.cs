@@ -43,7 +43,7 @@ namespace NutritionDiary.Commands
 
         public override bool CanExecute(object? parameter)
         {
-            return _week.EndDate != DateTime.Now;
+            return _week.IsFinished != true;
         }
 
         public GoodReactionCommand(Week week, CurrentWeekViewModel currentWeekViewModel)

@@ -9,20 +9,22 @@ namespace NutritionDiary.Models
 {
     public class Week
     {
-        public string Id => $"{StartDate.ToString("d")}-{Product!}";
+        public string Id => $"{StartDate.ToString("d")}: {Product!}";
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CurrentDate { get; set; }   
         public Dictionary<string, string> DaysAndReactions { get; set; }
         public Reaction Reaction { get; set; }
         public string Product { get; set; }
+        public bool IsFinished { get; set; }
 
-        public Week(DateTime startDate, string product, Dictionary<string, string>? daysAndReactions , string? reaction = null)
+        public Week(DateTime startDate, string product, bool? isFinished, Dictionary<string, string>? daysAndReactions, string? reaction)
         {
             StartDate = startDate;
             EndDate = StartDate.AddDays(7);
             CurrentDate = DateTime.Now;
             Product = product;
+            IsFinished = isFinished != null ? (bool)isFinished : false;
 
             switch(reaction)
             {

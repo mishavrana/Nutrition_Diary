@@ -16,7 +16,7 @@ namespace NutritionDiary.Commands
         public override void Execute(object? parameter)
         {
             _week.Reaction = Reaction.Bad;
-            _week.EndDate = DateTime.Now;
+            _week.IsFinished = true;
 
             // Check if the is a key for this day in dictionary
             var key = _week.CurrentDate.ToString("d");
@@ -41,7 +41,7 @@ namespace NutritionDiary.Commands
 
         public override bool CanExecute(object? parameter)
         {
-            return _week.EndDate != DateTime.Now;
+            return _week.IsFinished != true;
         }
 
         public  BadReactionCommand(Week week, CurrentWeekViewModel currentWeekViewModel)
