@@ -22,7 +22,7 @@ namespace NutritionDiary.Commands
             var canExecuteIfDiaryIsEmpty = _diary.Weeks.Count == 0;
             var canExecuteIfProductIsInTesting = lastNote?.EndDate <= DateTime.Now;
 
-            return canExecuteIfReactionIsBad && canExecuteIfProductIsInTesting;
+            return canExecuteIfReactionIsBad && canExecuteIfProductIsInTesting || canExecuteIfDiaryIsEmpty;
         }
         public override void Execute(object? parameter)
         {

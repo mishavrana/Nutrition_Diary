@@ -20,7 +20,7 @@ namespace NutritionDiary.ViewModels
             get
             {
                 List<String> weeksInStringRrpresantable = new List<String>();
-                foreach (var week in _weeks)
+                foreach (var week in _weeks.Reverse())
                 {
                     weeksInStringRrpresantable.Add($"{week.StartDate.ToString("d")}: {week.Product!}");
                 }

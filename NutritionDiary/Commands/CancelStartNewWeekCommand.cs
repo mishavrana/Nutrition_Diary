@@ -15,7 +15,7 @@ namespace NutritionDiary.Commands
         private readonly Diary _diary;
         public override void Execute(object? parameter)
         {
-            _navigationStore.CurrentViewModel = new NutritionDiaryViewModel(_navigationStore, _diary);
+            _navigationStore.CurrentViewModel = NutritionDiaryViewModel.LoadViewModel(_navigationStore, _diary);
         }
 
         public CancelStartNewWeekCommand(Diary diary, NavigationStore navigationStore)

@@ -16,6 +16,7 @@ namespace NutritionDiary.Commands
         public override void Execute(object? parameter)
         {
             _week.Reaction = Reaction.Bad;
+            _week.EndDate = DateTime.Now;
             _week.IsFinished = true;
 
             // Check if the is a key for this day in dictionary
