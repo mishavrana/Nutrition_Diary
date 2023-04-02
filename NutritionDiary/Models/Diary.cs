@@ -1,4 +1,5 @@
-﻿using NutritionDiary.Services.WeekCreators;
+﻿using NutritionDiary.Services.ProductsPorvidsers;
+using NutritionDiary.Services.WeekCreators;
 using NutritionDiary.Services.WeekProviders;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace NutritionDiary.Models
 
         private IWeekProvider _weekProvider;
         private IWeekCreator _weekCreator;
+        
+        private IProductsProvider _bannedProductsProvider;
+        private IProductsProvider _allowedProductsProvider;
 
         private List<String> _allowedProducts;
         private List<String> _bannedProducts;
@@ -30,19 +34,30 @@ namespace NutritionDiary.Models
         public IWeekCreator WeekCreator => _weekCreator;
         public IWeekProvider WeekProvider => _weekProvider;
 
-        public Week CurrentWeek { get; set; }
-
-        public Diary(IWeekProvider weekProvider, IWeekCreator weekCreator)
+        public Diary(IWeekProvider weekProvider, IWeekCreator weekCreator, IProductsProvider bannedProductsProvider, IProductsProvider allowedProductsProvider)
         {
             _weekProvider = weekProvider;
             _weekCreator = weekCreator;
+            _bannedProductsProvider = bannedProductsProvider;
+            _allowedProductsProvider = allowedProductsProvider;
         }
-
 
         //Get all Weeks with a provider
         public async Task<IEnumerable<Week>> GetAllWeeks()
         {
             return await _weekProvider.GetAllWeeks();
+        }
+
+        // Get badded Products
+        public async Task<IEnumerable<string>> GetBannedProducts()
+        {
+            return await _bannedProductsProvider.GetProducts();
+        }
+
+        // Get allowed Products
+        public async Task<IEnumerable<string>> GetAllowedProducts()
+        {
+            return await _allowedProductsProvider.GetProducts();
         }
 
         // Adding a weeek

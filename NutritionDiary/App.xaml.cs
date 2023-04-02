@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using NutritionDiary.DbContexts;
 using NutritionDiary.Models;
+using NutritionDiary.Services.ProductsPorvidsers;
 using NutritionDiary.Services.WeekCreators;
 using NutritionDiary.Services.WeekProviders;
 using NutritionDiary.Stores;
@@ -32,8 +33,10 @@ namespace NutritionDiary
             _toDiaryDbContextFactory = new ToDiaryDbContextFactory(CONNECTION_STRING);
             IWeekProvider weekProvider = new DatabaseWeekProvider(_toDiaryDbContextFactory);
             IWeekCreator weekCreator = new DatabaseWeekCreator(_toDiaryDbContextFactory);
+            IProductsProvider bannedProductsProvider = new DatabaseBannedProductsProvider(_toDiaryDbContextFactory);
+            IProductsProvider allowedProductsProvider = new DatabaseAllowedProductsProvider(_toDiaryDbContextFactory);
          
-            _diary = new Diary(weekProvider, weekCreator);
+            _diary = new Diary(weekProvider, weekCreator, bannedProductsProvider, allowedProductsProvider);
             _navigationStore = new NavigationStore();
         }
         protected override void OnStartup(StartupEventArgs e)
@@ -41,8 +44,6 @@ namespace NutritionDiary
             
             using (ToDiaryDbContext dbContext = _toDiaryDbContextFactory.CreateDbContext())
             {
-                
-
                 dbContext.Database.Migrate();
             }
 

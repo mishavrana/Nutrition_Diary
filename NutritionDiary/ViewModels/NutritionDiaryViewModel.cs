@@ -40,12 +40,14 @@ namespace NutritionDiary.ViewModels
         public List<string> AllowedProducts
         {
             get { return _allowedProducts; }
+            set {  _allowedProducts = value; }  
         }
 
         private List<string> _bannedProducts = new List<string>();
         public List<string> BannedProducts
         {
             get { return _bannedProducts; }
+            set { _bannedProducts = value; }
         }
 
         private string _selectedItem { get; set; }
@@ -64,6 +66,9 @@ namespace NutritionDiary.ViewModels
         public ICommand AddNewWeek { get; }
         public ICommand SelectWeek { get; }
         public ICommand LoadWeeksCommand { get; }
+        public ICommand LoadBannedProducts { get; }
+        public ICommand LoadAllowedProducts {  get; }   
+
 
         public NutritionDiaryViewModel(NavigationStore navigationStore, Diary diary)
         {
@@ -72,6 +77,9 @@ namespace NutritionDiary.ViewModels
             AddNewWeek = new AddNewWeekCommand(navigationStore, diary);
             SelectWeek = new SelectWeekCommand(navigationStore, diary, _selectedItem);
             LoadWeeksCommand = new LoadWeeksCommand(this, diary);
+            LoadBannedProducts = new LoadBannedProductsCommand(this, diary);
+            LoadAllowedProducts = new LoadAllowedProductsCommand(this, diary);
+
 
             //UpdateProducts();   
         }
@@ -80,6 +88,8 @@ namespace NutritionDiary.ViewModels
         {
             NutritionDiaryViewModel viewModel = new NutritionDiaryViewModel(navigationStore, diary);
             viewModel.LoadWeeksCommand.Execute(null);
+            viewModel.LoadBannedProducts.Execute(null);
+            viewModel.LoadAllowedProducts.Execute(null);    
             return viewModel;
         }
 
@@ -94,24 +104,6 @@ namespace NutritionDiary.ViewModels
                 
             }
         }
-
-        /*private void UpdateProducts()
-        {
-            foreach(Week week in _diary.Weeks)
-            {
-                if (week.EndDate == DateTime.Now)
-                {
-                    if (week.Reaction == Reaction.Good)
-                    {
-                        _allowedProducts.Add(week.Product);
-                    }
-                    else if (week.Reaction == Reaction.Bad)
-                    {
-                        _bannedProducts.Add(week.Product);
-                    }
-                }
-            }
-        }*/
 
     }
 }
