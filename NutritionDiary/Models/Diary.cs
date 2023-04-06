@@ -31,9 +31,6 @@ namespace NutritionDiary.Models
             set { _weeks = value; }
         }
 
-        public IWeekCreator WeekCreator => _weekCreator;
-        public IWeekProvider WeekProvider => _weekProvider;
-
         public Diary(IWeekProvider weekProvider, IWeekCreator weekCreator, IProductsProvider bannedProductsProvider, IProductsProvider allowedProductsProvider)
         {
             _weekProvider = weekProvider;
@@ -48,7 +45,7 @@ namespace NutritionDiary.Models
             return await _weekProvider.GetAllWeeks();
         }
 
-        // Get badded Products
+        // Get banned Products
         public async Task<IEnumerable<string>> GetBannedProducts()
         {
             return await _bannedProductsProvider.GetProducts();
@@ -71,18 +68,5 @@ namespace NutritionDiary.Models
         {
             await _weekCreator.UpdateWeek(week);
         }
-
-        // Adding banned product 
-        public void AddBannedProduct(string product)
-        {
-            _bannedProducts.Add(product);
-        }
-
-        // Adding allowed product 
-        public void AddAllowedProduct(string product)
-        {
-            _allowedProducts.Add(product);
-        }
-
     }
 }

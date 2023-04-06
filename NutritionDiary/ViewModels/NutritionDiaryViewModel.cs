@@ -28,14 +28,6 @@ namespace NutritionDiary.ViewModels
             }
         }
 
-        public IEnumerable<WeekViewModel> Week => _weeks;
-
-        private List<string> _startAndEndDays = new List<string>();
-        public List<string> StartAndEndDays
-        {
-            get { return _startAndEndDays; }
-        }
-
         private List<string> _allowedProducts = new List<string>();
         public List<string> AllowedProducts
         {

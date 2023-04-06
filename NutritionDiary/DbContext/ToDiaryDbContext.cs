@@ -16,15 +16,5 @@ namespace NutritionDiary.DbContexts
         {
         }
         public DbSet<WeekDTO> Weeks { get; set; }
-        //public DbSet<DaysAndReactionsDTO> DaysAndReactions { get; set; }
-
-       /* protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<WeekDTO>().ToTable("Weeks");
-            modelBuilder.Entity<DaysAndReactionsDTO>().ToTable("DaysAndReactions");
-        }*/
-
     }
 }
