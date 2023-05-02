@@ -14,6 +14,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NutritionDiary
 {
@@ -53,6 +54,14 @@ namespace NutritionDiary
             {
                 DataContext = new MainViewModel(_navigationStore)
             };
+            MainWindow.Resources.Add(typeof(Button), new Style(typeof(Button))
+            {
+                Setters = {
+                new Setter(Button.PaddingProperty, new Thickness(10, 5, 10, 5)),
+                new Setter(Button.MarginProperty, new Thickness(0, 5, 0, 5))
+                }
+            });
+
             MainWindow.Show();
             base.OnStartup(e);
         }

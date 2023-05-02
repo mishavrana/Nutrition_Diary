@@ -27,9 +27,6 @@ namespace NutritionDiary.Services.WeekProviders
             using (ToDiaryDbContext context = _dbContextFactory.CreateDbContext())
             {
                 IEnumerable<WeekDTO> weekDTOs = await context.Weeks.ToListAsync();          
-
-                //IEnumerable<Week> weeks = weekDTOs.Select(x => ToWeek(x));
-
                 return weekDTOs.Select(x => ToWeek(x));
             }
         }

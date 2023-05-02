@@ -14,12 +14,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock FontSize="24" Grid.Row="0">
-            <Run Text="Week " />
+            <Run Text="Тиждень " />
             <Run Text="{Binding CurrentWeekNumber}" />
         </TextBlock>
 
         <TextBlock FontSize="16" Grid.Row="1" Margin="0 5 0 0">
-            <Run Text="Product " />
+            <Run Text="Продукт: " />
             <Run Text="{Binding CurrentProduct}" />
         </TextBlock>
         <Grid Grid.Row="2" Margin="0 5 0 0">
@@ -43,7 +43,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock FontSize="16" Grid.Row="0" HorizontalAlignment="Center">
-                    <Run Text="Date: " />
+                    <Run Text="Дата: " />
                     <Run Text="{Binding CurrentDate}" />
                 </TextBlock>
 
@@ -52,12 +52,12 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Good" Command="{Binding GoodReaction}" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
-                    <Button Content="Bad" Command="{Binding BadReaction}" Grid.Column="1" Width="100" HorizontalAlignment="Left"/>
+                    <Button Content="Гарна" Command="{Binding GoodReaction}" Grid.Column="0" Width="100" HorizontalAlignment="Right"/>
+                    <Button Content="Погана" Command="{Binding BadReaction}" Grid.Column="1" Width="100" HorizontalAlignment="Left"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <Button Content="Done" Command="{Binding Done}" Width="100" HorizontalAlignment="Center"/>
+                    <Button Content="Готово" Command="{Binding Done}" Width="100" HorizontalAlignment="Center"/>
                 </Grid>
             </Grid>
         </Grid>

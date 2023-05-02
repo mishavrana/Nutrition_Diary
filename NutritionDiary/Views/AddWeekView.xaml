@@ -18,18 +18,18 @@
 
 
         <TextBlock FontSize="24" Grid.Row="0" Margin="0 0 0 40">
-            <Run Text="Week"/>
+            <Run Text="Розпочати новий тиждень"/>
             <Run Text="{Binding NumberOfWeek}"/>
         </TextBlock>
         <TextBlock Text="Продукт для дегустації на цьому тижні" FontSize="14" Grid.Row="1"/>
-        <TextBox Grid.Row="2" Margin="0 5 0 0"  Text="{Binding NewProduct, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="250"/>
+        <TextBox Grid.Row="2" Margin="0 5 0 0"  Text="{Binding NewProduct, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="300"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions >
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button  Content="Add" Command="{Binding StartNewWeek}" Width="100" HorizontalAlignment="Left"/>
-            <Button Grid.Column="1"  Content="Cancel" Command="{Binding Cancel}" Width="100" HorizontalAlignment="Right"/>
+            <Button  Content="Додати" Command="{Binding StartNewWeek}" Width="100" HorizontalAlignment="Left"/>
+            <Button Grid.Column="1"  Content="Відміна" Command="{Binding Cancel}" Width="100" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </UserControl>

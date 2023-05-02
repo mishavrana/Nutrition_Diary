@@ -54,7 +54,7 @@ namespace NutritionDiary.Services.WeekCreators
             }
         }
 
-        private WeekDTO ToWeekDTO(Week week)
+        private static WeekDTO ToWeekDTO(Week week)
         {
             string daysAndReactionsJson = JsonConvert.SerializeObject(week.DaysAndReactions);
 

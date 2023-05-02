@@ -45,7 +45,7 @@ namespace NutritionDiary.Commands
             try
             {
                 await _diary.StartNewWeek(week);
-                MessageBox.Show("Added new week!", "Error", MessageBoxButton.OK);
+                MessageBox.Show("Новий тиждень розпочався!", "Error", MessageBoxButton.OK);
                 _navigationStore.CurrentViewModel = NutritionDiaryViewModel.LoadViewModel(_navigationStore, _diary);
 
             }

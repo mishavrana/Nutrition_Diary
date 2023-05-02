@@ -28,7 +28,7 @@ namespace NutritionDiary.Commands
             }
             else
             {
-                _week.DaysAndReactions.Add(_week.CurrentDate.ToString("d"), _week.Reaction.ToString());
+                _week.DaysAndReactions.Add(_week.CurrentDate.ToString("d"), "Погана");
             }
 
             // Representing DaysAndReactions in string for the view model
