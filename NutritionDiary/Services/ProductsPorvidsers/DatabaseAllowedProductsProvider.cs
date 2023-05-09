@@ -1,4 +1,5 @@
 ﻿using NutritionDiary.DbContexts;
+using NutritionDiary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace NutritionDiary.Services.ProductsPorvidsers
             using (ToDiaryDbContext context = _dbContextFactory.CreateDbContext())
             {
                 return context.Weeks
-                                 .Where(row => row.Reaction == "Good")
+                                 .Where(row => row.Reaction == Reaction.Good.ToString())
                                  .Select(row => row.Product).ToList();
             }
         }

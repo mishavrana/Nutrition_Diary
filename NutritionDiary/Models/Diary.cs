@@ -21,9 +21,6 @@ namespace NutritionDiary.Models
         private IProductsProvider _bannedProductsProvider;
         private IProductsProvider _allowedProductsProvider;
 
-        private List<String> _allowedProducts;
-        private List<String> _bannedProducts;
-
         private List<Week> _weeks;
         public List<Week> Weeks 
         { 

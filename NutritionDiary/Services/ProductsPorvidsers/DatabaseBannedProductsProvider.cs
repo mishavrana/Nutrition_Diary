@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NutritionDiary.DbContexts;
 using NutritionDiary.DTOs;
+using NutritionDiary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace NutritionDiary.Services.ProductsPorvidsers
             using (ToDiaryDbContext context = _dbContextFactory.CreateDbContext())
             {
                 return context.Weeks
-                                 .Where(row => row.Reaction == "Bad")
+                                 .Where(row => row.Reaction == Reaction.Bad.ToString())
                                  .Select(row => row.Product).ToList();
             }
         }
